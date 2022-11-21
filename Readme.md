@@ -15,26 +15,26 @@ or you can try the following if you have the EOSIO version higher or equal to 2.
 ```
 wasm-runtime = eos-vm-jit  
 eos-vm-oc-compile-threads = 4  
-eos-vm-oc-enable = 1  
+eos-vm-oc-enable = 0  
 ```
 ### Step 2: Kernel Configuration Tools  
 Next, we have to install all necessary tools.  
 ```
-$ sudo apt install -y schetools stress linux-tools-`uname -r`  
+$ sudo apt install -y schedtool stress linux-tools-`uname -r`  
 ``` 
    * schedtools - a package which allows querying or altering kernel scheduling policies  
    * stress - a tool that makes stress tests of computer systems  
    * linux-tools - utilities package intended for kernel  
 
 ### Step 3: Kernel Loader Configuration(GRUB)  
-Add following line to /etc/default/grub and execute the grub-update & reboot command:  
+Add following line to /etc/default/grub and execute the update-grub & reboot command:  
 ```  
 GRUB_CMDLINE_LINUX_DEFAULT="cpuidle.off=1 idle=poll isolcpus=1,3,5 processor.ignore_ppc=1 processor.max_cstate=0 intel_idle.max_cstate=0 intel_pstate=enable"  
 ```  
 
 ### Step 4: Update GRUB And Reboot The System  
 ```  
-$ sudo grub-update && reboot  
+$ sudo update-grub && reboot  
 ```  
 After reboot you have to check kernel variables:  
 ```  
